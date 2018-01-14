@@ -18,7 +18,7 @@ import org.opencv.imgproc.Imgproc;
 
 public class MainActivity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2{
     JavaCameraView mJavaCameraView;
-    Mat mRGBA;
+    Mat mRGBA, mImgGrey, mImgCanny;
     BaseLoaderCallback mBaseLoaderCallback = new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {
@@ -81,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
     @Override
     public void onCameraViewStarted(int width, int height) {
         mRGBA = new Mat(height, width, CvType.CV_8UC4);
+        mImgGrey = new Mat(height, width, CvType.CV_8UC1);
+        mImgCanny = new Mat(height, width, CvType.CV_8UC1);
     }
 
     @Override
@@ -90,17 +92,27 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
 
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
+        int matType = 3;
         //Fix camera orientation for portrait mode
+        mRGBA = inputFrame.rgba();
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
-            mRGBA = inputFrame.rgba();
             Mat mRGBA_T = mRGBA.t();
             Core.transpose(mRGBA,mRGBA_T);
             Core.flip(mRGBA_T, mRGBA_T, 1);
             Imgproc.resize(mRGBA_T, mRGBA_T, mRGBA.size());
 
-            return mRGBA_T;
+            mRGBA = mRGBA_T;
         }
-        mRGBA = inputFrame.rgba();
+        if (matType == 1){
+            Imgproc.cvtColor(mRGBA, mRGBA, Imgproc.COLOR_RGB2GRAY);
+            //mRGBA = mImgGrey;
+        } else if (matType == 2){
+            //Imgproc.cvtColor(mRGBA, mRGBA, Imgproc.COLOR_RGB2GRAY);
+            Imgproc.Canny(mRGBA, mRGBA, 50, 150);
+            //mRGBA = mImgCanny;
+        } else if (matType == 3){
+            Imgproc.cvtColor(mRGBA, mRGBA, 50, 150);
+        }
         return mRGBA;
     }
 }
