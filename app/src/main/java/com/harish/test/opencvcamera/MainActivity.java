@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.SurfaceView;
+import android.widget.TextView;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
     };
 
     static {
-
+        System.loadLibrary("MyLibs");
     }
 
     @Override
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Log.d("MainActivity", NativeClass.getMessageFromJNI());
         mJavaCameraView = findViewById(R.id.java_camera_view);
         mJavaCameraView.setVisibility(SurfaceView.VISIBLE);
         mJavaCameraView.setCvCameraViewListener(this);
@@ -92,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
 
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-        int matType = 3;
+        int matType = 1;
         //Fix camera orientation for portrait mode
         mRGBA = inputFrame.rgba();
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
