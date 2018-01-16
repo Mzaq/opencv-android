@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
 
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-        int matType = 1;
+        int matType = 0;
         //Fix camera orientation for portrait mode
         mRGBA = inputFrame.rgba();
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
@@ -115,6 +115,8 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
         } else if (matType == 3){
             Imgproc.cvtColor(mRGBA, mRGBA, 50, 150);
         }
+
+        NativeClass.faceDetection(mRGBA.getNativeObjAddr());
         return mRGBA;
     }
 }
