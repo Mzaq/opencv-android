@@ -6,5 +6,6 @@ package com.harish.test.opencvcamera;
 
 @SuppressWarnings("JniMissingFunction")
 public class NativeClass {
+    public native static void faceDetection(long addRGBA);
     public native static String getMessageFromJNI();
 }
