@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="C:\Users\hdv98\Desktop\Harish&apos;s Things\Android Projects\OpenCVCamera\openCVLibrary-v2.4.9\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="C:\Users\hdv98\Desktop\Harish&apos;s Things\Android Projects\OpenCVCamera\openCVLibrary-v2.4.9\src\debug\jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="C:\Users\hdv98\Desktop\HarishThings\AndroidProjects\OpenCVCamera\openCVLibrary-v2.4.9\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="C:\Users\hdv98\Desktop\HarishThings\AndroidProjects\OpenCVCamera\openCVLibrary-v2.4.9\src\debug\jniLibs"/></dataSet></merger>
