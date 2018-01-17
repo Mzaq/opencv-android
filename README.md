@@ -3,7 +3,7 @@ Various face detection implementations using OpenCV.
 You can download this and try it out on your own Android phone (if you have the correct CPU architecture).
 
 ### Tools:
-Created in Android Studio 3.0.1 using OpenCV 2.4. Used both the Android SDK (Java) and NDK (native C++ code). 
+Created in Android Studio 3.0.1 using OpenCV 2.4. Used both the Android SDK (Java) and NDK (native C++ code). Used a Haar classifier cascade implementation. 
 
 ### Screenshots:
 Single face detection
